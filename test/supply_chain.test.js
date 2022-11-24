@@ -93,8 +93,8 @@ contract("SupplyChain", function (accounts) {
           "Struct Item should have a `sku` member"
         );
         assert(
-          isType(subjectStruct)("sku")("uint"), 
-          "`sku` should be of type `uint`"
+          isType(subjectStruct)("sku")("uint256"), 
+          "`sku` should be of type `uint256`"
         );
       });
 
@@ -104,8 +104,8 @@ contract("SupplyChain", function (accounts) {
           "Struct Item should have a `price` member"
         );
         assert(
-          isType(subjectStruct)("price")("uint"), 
-          "`price` should be of type `uint`"
+          isType(subjectStruct)("price")("uint256"), 
+          "`price` should be of type `uint256`"
         );
       });
 
@@ -239,7 +239,7 @@ contract("SupplyChain", function (accounts) {
 
     it("should error when not enough value is sent when purchasing an item", async () => {
       await instance.addItem(name, price, { from: alice });
-      await expectRevert.assertion(instance.buyItem(0, { from: bob, value: 1 }));
+      await expectRevert.unspecified(instance.buyItem(0, { from: bob, value: 1 }));
     });
 
     it("should emit LogSold event when and item is purchased", async () => {
